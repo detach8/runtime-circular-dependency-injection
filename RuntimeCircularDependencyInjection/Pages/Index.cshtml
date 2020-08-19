@@ -1,0 +1,28 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Runtime Circular Dependency Injection";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+    <p>
+        This shows an example of a circular dependency that can be resolved using runtime resolution.
+    </p>
+    <p>
+        In this example <code>IPaymentService</code> depends on several <code>IPaymentHandler</code>
+        that it would call during <code>Capture()</code>. This is a similar to a single publisher + multiple
+        subscriber design.
+    </p>
+    <p>
+        Then each <code>IPaymentHandler</code> also depends on <code>IPaymentService</code> to call <code>Update()</code>.
+        This is becomes a circular dependency.
+    </p>
+    <p>
+        The solution to this is to resolve <code>IPaymentHandler</code> at runtime within <code>IPaymentService</code>.
+    </p>
+    <form asp-page="Index">
+        <p>Enter an amount to capture, and watch the console output:</p>
+        <p><input type="text" asp-for="@Model.Amount" /> <input type="submit" value="Capture" /></p>
+    </form>
+</div>
