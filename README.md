@@ -2,6 +2,8 @@
 
 This shows an example of a circular dependency that can be resolved using runtime resolution.
 
+![Class diagram](class_diagram.png "Class diagram")
+
 ## The Payment Service
 
 In this example `IPaymentService` depends on several `IPaymentHandler`s to process payments.
